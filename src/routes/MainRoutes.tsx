@@ -22,7 +22,9 @@ const WidgetChart = Loadable(lazy(() => import('pages/widget/chart')));
 // render - applications
 const AppChat = Loadable(lazy(() => import('pages/apps/chat')));
 const AppCalendar = Loadable(lazy(() => import('pages/apps/calendar')));
-const AppInventory = Loadable(lazy(() => import('pages/apps/inventory')));
+const InventoryPage = Loadable(lazy(() => import('pages/InventoryPage')));
+// alias InventoryPage for apps route
+const AppInventory = InventoryPage;
 
 const AppKanban = Loadable(lazy(() => import('pages/apps/kanban')));
 const AppKanbanBacklogs = Loadable(lazy(() => import('sections/apps/kanban/Backlogs')));
@@ -167,6 +169,10 @@ const MainRoutes = {
               element: <WidgetChart />
             }
           ]
+        },
+        {
+          path: 'inventory',
+          element: <InventoryPage />
         },
         {
           path: 'apps',

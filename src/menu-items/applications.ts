@@ -45,9 +45,8 @@ const applications: NavItemType = {
       id: 'inventory',
       title: 'inventory',
       type: 'item',
-      url: '/apps/inventory',
-      icon: icons.AppstoreAddOutlined,
-      breadcrumbs: false
+      url: '/inventory',
+      icon: icons.AppstoreAddOutlined
     },
     {
       id: 'chat',
