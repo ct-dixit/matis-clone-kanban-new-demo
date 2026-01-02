@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
 // material-ui
-import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -16,6 +15,7 @@ import { format, isAfter, subDays } from 'date-fns';
 
 // project imports
 import MainCard from 'components/MainCard';
+import Avatar from 'components/@extended/Avatar';
 import { getImageUrl, ImagePath } from 'utils/getImageUrl';
 import { useGetBacklogs } from 'api/kanban';
 
@@ -44,9 +44,7 @@ export default function DailySummary() {
     // Get column info for each task
     return tasks.map((task: KanbanItem) => {
       const column = backlogs.columns.find((col: KanbanColumn) => col.itemIds.includes(task.id));
-      const assignedUser = task.assign
-        ? backlogs.profiles?.find((profile: KanbanProfile) => profile.id === task.assign)
-        : undefined;
+      const assignedUser = task.assign ? backlogs.profiles?.find((profile: KanbanProfile) => profile.id === task.assign) : undefined;
 
       return {
         ...task,
@@ -167,5 +165,3 @@ export default function DailySummary() {
     </MainCard>
   );
 }
-
-

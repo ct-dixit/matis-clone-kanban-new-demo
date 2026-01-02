@@ -2,7 +2,6 @@ import { CSSProperties, useState } from 'react';
 
 // material-ui
 import { Theme } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
 import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
@@ -22,6 +21,7 @@ import EditStory from '../Backlogs/EditStory';
 import AlertItemDelete from './AlertItemDelete';
 import IconButton from 'components/@extended/IconButton';
 import { getImageUrl, ImagePath } from 'utils/getImageUrl';
+import Avatar from 'components/@extended/Avatar';
 
 import { deleteItem, handlerKanbanDialog, useGetBacklogs } from 'api/kanban';
 import { openSnackbar } from 'api/snackbar';
@@ -66,10 +66,6 @@ const getDragWrapper = (
     background: withAlpha(theme.vars.palette.background.paper, isDragging ? 0.8 : 1),
     borderRadius: radius,
     transition: 'all 0.2s ease-in-out',
-    '&:hover': {
-      boxShadow: theme.shadows[4],
-      transform: 'translateY(-2px)'
-    },
     ...draggableStyle
   };
 };
@@ -114,7 +110,7 @@ export default function Items({ item, index }: Props) {
 
   const backProfile = !!item.image;
   const itemStory = backlogs?.userStory.filter((story: KanbanUserStory) => story?.itemIds?.filter((itemId) => itemId === item.id)[0])[0];
-  
+
   // Get assigned user profile
   const assignedUser: KanbanProfile | undefined = item.assign
     ? backlogs?.profiles?.find((profile: KanbanProfile) => profile.id === item.assign)
@@ -356,9 +352,7 @@ export default function Items({ item, index }: Props) {
               />
             )}
           </Stack>
-          {itemStory && (
-            <EditStory story={itemStory} open={openStoryDrawer} handleDrawerOpen={handleStoryDrawerOpen} />
-          )}
+          {itemStory && <EditStory story={itemStory} open={openStoryDrawer} handleDrawerOpen={handleStoryDrawerOpen} />}
         </Box>
       )}
     </Draggable>
